@@ -1,6 +1,6 @@
 // src/components/Sidebar.jsx
 
-import "./style/sidebar.css";
+import "./Style/sidebar.css";
 import FacebookWidget from "./FacebookWidget";
 import AdBanner from "./AdBanner"; // ad component
 import RecentUpdates from "./RecentUpdates"; // import RecentUpdates
