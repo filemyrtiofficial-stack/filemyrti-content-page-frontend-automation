@@ -16,6 +16,7 @@
   transition: transform 0.7s ease-in-out;
   height: 100%; 
   margin-left: 95px;
+  /* margin-right: 20px; */
 }
 
 /* ---------- Single Slide ---------- */
@@ -53,7 +54,7 @@
 .slide-content {
   width: 50%;
   height: 100%;
-  display: flex;
+  display: ;
   flex-direction: column;
   justify-content: center;
 }
@@ -209,7 +210,8 @@
 
 @media screen and (max-width: 480px) {
   .slides{
-    margin-left: 0%
+    margin-left: 0%;
+    margin-right: 0%;
   }
   .slide-img {
     height: 180px;
