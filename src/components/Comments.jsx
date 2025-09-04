@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./style/comments.css";
+import "./Style/comments.css";
 
 export default function Comments({ articleId }) {
   const [comments, setComments] = useState([
