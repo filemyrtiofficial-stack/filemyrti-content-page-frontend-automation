@@ -1,5 +1,5 @@
 // src/components/AdBanner.jsx
-import "./style/ad.css";
+import "./Style/ad.css";
 // import adImage from "../assets/Hero/1.avif"; // adjust path if 
 // needed
 import adImage from "../assets/Hero/1.avif"; // new ad image
