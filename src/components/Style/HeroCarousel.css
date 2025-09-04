@@ -15,7 +15,6 @@
   display: flex;
   transition: transform 0.7s ease-in-out;
   height: 100%; 
-  margin-left: 95px;
 }
 
 /* ---------- Single Slide ---------- */
@@ -103,6 +102,8 @@
   display: flex;
   gap: 8px;
   z-index: 2;
+  margin-top: 50px;
+
 }
 
 .dots button {
@@ -113,6 +114,7 @@
   background: #aaa;
   cursor: pointer;
   transition: background 0.3s ease;
+  
 }
 
 .dots button.active {
@@ -157,6 +159,8 @@
     flex-direction: column;
     text-align: center;
     padding: 20px;
+    margin-left: 0px;
+
   }
 
   .slide-img {
