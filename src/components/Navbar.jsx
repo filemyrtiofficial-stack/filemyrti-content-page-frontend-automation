@@ -1,10 +1,7 @@
-import { useState } from "react";
 import logo from "../assets/logo.webp"; // adjust path if needed
 import "./Style/Navbar.css";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
       <nav className="navbar">
@@ -13,18 +10,8 @@ export default function Navbar() {
           <img src={logo} alt="File My RTI Logo" />
         </div>
 
-        {/* Hamburger Button */}
-        <div
-          className={`hamburger ${isOpen ? "active" : ""}`}
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
         {/* Right - CTAs */}
-        <div className={`navbar-ctas ${isOpen ? "active" : ""}`}>
+        <div className="navbar-ctas">
           {/* File My RTI Banner */}
           <div className="rti-banner">
             <div className="rti-content">
@@ -55,9 +42,6 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-
-      {/* Background Overlay (only shows on mobile when menu is open) */}
-      {isOpen && <div className="menu-overlay" onClick={() => setIsOpen(false)}></div>}
     </>
   );
 }
