@@ -198,12 +198,12 @@
   }
   .footer-brand,
   .newsletter {
-    align-items: center;
+    /* align-items: center; */
   }
   .contact-item {
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
   }
   .footer-links {
     grid-template-columns: 1fr;
