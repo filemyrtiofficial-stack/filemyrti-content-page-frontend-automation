@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_BASE_URL } from "../../config"; // production backend URL
-import "./style/recent-updates.css";
+import "./Style/recent-updates.css";
 
 export default function RecentUpdates() {
   const [items, setItems] = useState([]);
