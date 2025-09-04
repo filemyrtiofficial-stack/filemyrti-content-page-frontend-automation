@@ -1,6 +1,6 @@
 .articles-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Always 3 cards per row */
+  grid-template-columns: repeat(3, 1fr) !important;  /* Always 3 cards per row */
   gap: 2rem;
   padding: 2rem;
   margin-left: 0px;
