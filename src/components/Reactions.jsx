@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./style/reactions.css";
+import "./Style/reactions.css";
 
 export default function Reactions() {
   const [reactions, setReactions] = useState({
