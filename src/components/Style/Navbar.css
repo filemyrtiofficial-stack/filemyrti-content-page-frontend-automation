@@ -1,115 +1,129 @@
+/* Navbar.css */
 .navbar {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
-  background-color: #fff;
+  background: #ffffff;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  height: auto; /* Let navbar grow if banners are taller */
 }
 
 /* Logo */
 .navbar-logo img {
-  height: 95px !important;
+  height: 45px;
   width: auto;
-  margin-left: 20px;
-  max-width: 100%;
-  margin-left: 90px !important;
+  cursor: pointer;
 }
 
-/* Right side banners */
+/* CTAs container */
 .navbar-ctas {
   display: flex;
-  gap: 15px;
-  margin-right: 20px;
-  flex-wrap: wrap;
-  margin-right: 90px !important;
+  gap: 1rem;
+  transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* RTI Banner */
+/* Each Banner */
 .rti-banner {
-  width: 250px;
-  height: 50px;
-  background: linear-gradient(135deg, #1e73be, #4285f4);
-  color: white;
-  padding: 20px;
-  /* border-radius: 10px; */
-  text-align: left;
-  min-width: 20px;
-  flex: 1;
+  background: #f4f6f8;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.rti-banner:hover {
+  background: #eef2f5;
 }
 
 .rti-content h3 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: bold;
-  color: #fff !important;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 600;
 }
-
-
 
 .rti-actions {
   display: flex;
-  gap: 10px;
+  justify-content: center;
 }
 
 .rti-button {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #000;
+  background: #0077ff;
   color: #fff;
-  font-weight: 600;
+  padding: 0.5rem 1rem;
   border-radius: 6px;
   text-decoration: none;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
+  font-size: 0.85rem;
+  transition: background 0.3s ease;
 }
 
 .rti-button:hover {
-  background-color: #333;
+  background: #005fcc;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
+/* ============= Responsive ============= */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 20px;
-    height: auto;
+    flex-wrap: wrap;
   }
 
   .navbar-ctas {
-    flex-direction: column;
     width: 100%;
-    gap: 10px;
-    margin-top: 10px;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    overflow: hidden;
+
+    /* Hidden state */
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  .navbar-ctas.active {
+    max-height: 500px; /* enough space */
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hamburger {
+    display: flex;
+    margin-left: auto;
   }
 
   .rti-banner {
     width: 100%;
-    min-width: unset;
+    text-align: center;
   }
 }
 
-@media (max-width: 480px) {
-  .navbar-logo img {
-    height: 40px;
-    margin-left: 0;
-  }
-
-  .rti-content h3 {
-    font-size: 16px;
-  }
-
-  .rti-content p {
-    font-size: 13px;
-  }
-
-  .rti-button {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
+/* Hamburger Animation */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
 }
