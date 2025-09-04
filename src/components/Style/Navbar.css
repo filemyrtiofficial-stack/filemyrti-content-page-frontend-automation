@@ -22,7 +22,7 @@
 /* Right side banners */
 .navbar-ctas {
   display: flex;
-  gap: 15px;
+  gap: 5px;
   margin-right: 90px !important;
   flex-wrap: wrap;
   transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.3s ease;
@@ -30,8 +30,8 @@
 
 /* RTI Banner */
 .rti-banner {
-  width: 250px;
-  height: 50px;
+  width: 280px;
+  height: 100px;
   background: linear-gradient(135deg, #1e73be, #4285f4);
   color: white;
   padding: 20px;
@@ -44,6 +44,7 @@
   font-size: 18px;
   font-weight: bold;
   color: #fff !important;
+  margin-bottom: 5px;
 }
 
 .rti-actions {
