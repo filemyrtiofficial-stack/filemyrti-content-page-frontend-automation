@@ -1,0 +1,62 @@
+/* ===== Container Flex for Blog Page ===== */
+.container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* Main content (BlogPage + AdBanner) */
+.container main {
+  flex: 3 1 0%;
+  min-width: 0;
+}
+
+/* Sidebar */
+.container aside {
+  flex: 1 1 300px;
+  min-width: 250px;
+}
+
+/* AdBanner inside main */
+.container main .ad-banner {
+  margin: 20px 0;
+}
+
+/* ===== Home Page spacing ===== */
+.home-page > * {
+  margin-bottom: 30px;
+}
+
+/* ===== Responsive ===== */
+
+/* Tablets: wrap Sidebar under main if width < 992px */
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .container main,
+  .container aside {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+
+  .container main .ad-banner {
+    margin: 20px 0;
+  }
+}
+
+/* Mobile: smaller gaps, padding, font adjustments */
+@media (max-width: 576px) {
+  .container {
+    gap: 15px;
+    padding: 0 10px;
+  }
+
+  .container main .ad-banner {
+    margin: 15px 0;
+  }
+}

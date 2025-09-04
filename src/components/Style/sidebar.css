@@ -1,0 +1,124 @@
+/* src/components/styles/sidebar.css */
+
+/* Sidebar container */
+.sidebar {
+  width: 500px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* General widget styling */
+.widget {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Widget headings */
+.widget h3 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+/* Trending list styling */
+.widget ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.widget ul li {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Ad Box */
+.ad-box img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Recent Updates Integration */
+.recent-updates {
+  /* Remove extra margin if inside sidebar */
+  margin: 0;
+}
+
+.ru-heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.ru-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ru-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.ru-thumb img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.ru-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ru-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 0 0 3px;
+  color: #333;
+}
+
+.ru-date {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Facebook widget adjustments */
+.widget > div {
+  display: flex;
+  justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .ru-item {
+    gap: 8px;
+  }
+
+  .ru-thumb img {
+    width: 50px;
+    height: 50px;
+  }
+}

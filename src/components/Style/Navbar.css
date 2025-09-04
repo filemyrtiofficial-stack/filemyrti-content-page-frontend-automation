@@ -1,0 +1,115 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  height: auto; /* Let navbar grow if banners are taller */
+}
+
+/* Logo */
+.navbar-logo img {
+  height: 95px !important;
+  width: auto;
+  margin-left: 20px;
+  max-width: 100%;
+  margin-left: 90px !important;
+}
+
+/* Right side banners */
+.navbar-ctas {
+  display: flex;
+  gap: 15px;
+  margin-right: 20px;
+  flex-wrap: wrap;
+  margin-right: 90px !important;
+}
+
+/* RTI Banner */
+.rti-banner {
+  width: 250px;
+  height: 50px;
+  background: linear-gradient(135deg, #1e73be, #4285f4);
+  color: white;
+  padding: 20px;
+  /* border-radius: 10px; */
+  text-align: left;
+  min-width: 20px;
+  flex: 1;
+}
+
+.rti-content h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff !important;
+}
+
+
+
+.rti-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.rti-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #000;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.rti-button:hover {
+  background-color: #333;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+    height: auto;
+  }
+
+  .navbar-ctas {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .rti-banner {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-logo img {
+    height: 40px;
+    margin-left: 0;
+  }
+
+  .rti-content h3 {
+    font-size: 16px;
+  }
+
+  .rti-content p {
+    font-size: 13px;
+  }
+
+  .rti-button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}

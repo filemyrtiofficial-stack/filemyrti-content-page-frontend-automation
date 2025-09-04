@@ -1,0 +1,21 @@
+.reactions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.reactions button {
+  border: none;
+  background: #f1f1f1;
+  padding: 0.4rem 0.7rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.reactions button:hover {
+  background: #e2e2e2;
+}

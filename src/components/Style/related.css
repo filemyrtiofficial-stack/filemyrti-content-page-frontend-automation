@@ -1,0 +1,21 @@
+.related-posts {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.related-posts h4 {
+  margin-bottom: 0.5rem;
+}
+
+.related-posts ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+.related-posts li {
+  margin-bottom: 0.4rem;
+  cursor: pointer;
+  color: #0073e6;
+}

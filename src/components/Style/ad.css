@@ -1,0 +1,36 @@
+/* .ad-banner {
+  width: 100%;
+  max-width: 1200px;       /* Limit the banner width */
+  margin: 20px auto;       /* Center horizontally */
+  border-radius: 12px;     /* Rounded corners */
+  overflow: hidden;        /* Keep image inside rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ad-banner:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.ad-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ad-banner {
+    margin: 15px auto;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ad-banner {
+    margin: 10px auto;
+    border-radius: 6px;
+  }
+} */
