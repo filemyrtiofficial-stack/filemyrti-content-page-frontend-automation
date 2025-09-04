@@ -3,23 +3,21 @@
   width: 100%;
   max-width: 1590px;
   height: 400px;
-  margin: 0 auto;
+  margin: 0 auto 90px auto;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  /* box-shadow: 0 4px 15px rgba(0,0,0,0.3); */
   background-color: #fff;
-  margin-bottom: 90px !important;
-
 }
 
-/* ---------- Slides ---------- */
+/* ---------- Slides Wrapper ---------- */
 .slides {
   display: flex;
   transition: transform 0.7s ease-in-out;
   height: 100%; 
 }
 
+/* ---------- Single Slide ---------- */
 .slide {
   display: flex;
   min-width: 100%;
@@ -28,32 +26,32 @@
   gap: 20px;
   padding: 20px;
   box-sizing: border-box;
-  margin: 0px 0px 1px 17px;
 }
 
 /* ---------- Slide Image ---------- */
 .slide-img {
-  width: 40%;
+  width: 45%;
   height: 100%;
   overflow: hidden;
   border-radius: 12px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .slide-img img {
-  width: 90%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   cursor: pointer;
   border-radius: 12px;
-  margin-left: 70px;
 }
 
 /* ---------- Slide Content ---------- */
 .slide-content {
   width: 50%;
   height: 100%;
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   justify-content: center;
 }
@@ -67,21 +65,16 @@
 }
 
 .slide-content h2 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 700;
-  width: 95%;
   margin-bottom: 12px;
   font-family: Cabin, sans-serif;
-  margin-left: 10px;
 }
 
 .slide-content p {
   font-size: 1.125rem;
   margin-bottom: 15px;
   line-height: 1.5;
-  width: 95%;
-  margin-left: 10px;
-
 }
 
 .slide-content button {
@@ -89,11 +82,10 @@
   padding: 10px 20px;
   background-color: #2563eb;
   border: none;
-  /* border-radius: 12px; */
+  border-radius: 8px;
   color: white;
   cursor: pointer;
-  margin-left: 10px;
-
+  transition: background-color 0.3s ease;
 }
 
 .slide-content button:hover {
@@ -104,11 +96,11 @@
 .dots {
   position: absolute;
   left: 50%;
+  bottom: 12px;
   transform: translateX(-50%);
   display: flex;
   gap: 8px;
   z-index: 2;
-  margin-top: 8px;
 }
 
 .dots button {
@@ -118,6 +110,7 @@
   border: none;
   background: #aaa;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .dots button.active {
@@ -131,59 +124,100 @@
   transform: translateY(-50%);
   font-size: 28px;
   padding: 10px;
-  border-radius: 5%;
+  border-radius: 50%;
   border: none;
-  background: rgba(0,0,0,0.3);
-  /* color: white; */
+  background: rgba(0,0,0,0.2);
   color: #1e40af;
   cursor: pointer;
   z-index: 2;
+  transition: background 0.3s ease;
 }
 
 .arrow:hover {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.4);
 }
 
 .arrow.left {
-  left: 10px;
+  left: 12px;
 }
 
 .arrow.right {
-  right: 10px;
+  right: 12px;
 }
 
 /* ---------- Responsive ---------- */
 @media screen and (max-width: 1024px) {
-  .slide {
-    flex-direction: column;
-    gap: 15px;
-    padding: 15px;
-  }
-  .slide-img, .slide-content {
-    width: 100%;
+  .carousel {
     height: auto;
   }
-  .slide-content h2 {
-    font-size: 24px;
+
+  .slide {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
   }
+
+  .slide-img {
+    width: 100%;
+    height: 250px;
+  }
+
+  .slide-content {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .slide-content h2 {
+    font-size: 1.8rem;
+  }
+
   .slide-content p {
     font-size: 14px;
   }
 }
 
 @media screen and (max-width: 768px) {
+  .slide-img {
+    height: 200px;
+  }
+
   .slide-content h2 {
-    font-size: 20px;
+    font-size: 1.5rem;
   }
+
   .slide-content p {
-    font-size: 12px;
+    font-size: 13px;
   }
+
   .arrow {
-    font-size: 24px;
-    padding: 8px;
+    font-size: 22px;
+    padding: 6px;
   }
+
   .dots button {
     width: 10px;
     height: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .slide-img {
+    height: 180px;
+  }
+
+  .slide-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .slide-content p {
+    font-size: 12px;
+  }
+
+  .slide-content button {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  .arrow{
+    display: none;
   }
 }
