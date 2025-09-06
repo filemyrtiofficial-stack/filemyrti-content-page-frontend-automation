@@ -15,7 +15,7 @@ export default function Navbar() {
           {/* File My RTI Banner */}
           <div className="rti-banner">
             <div className="rti-content">
-              <h3>Need any Legal/RTI help?</h3>
+              <h3>Take Action – File Your RTI</h3>
               <div className="rti-actions">
                 <a
                   href="https://filemyrti.com/apply/personal-rti/custom-request"
