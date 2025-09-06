@@ -23,7 +23,7 @@ export default function Navbar() {
                   rel="noopener noreferrer"
                   className="rti-button"
                 >
-                  File My RTI
+                  Apply Now
                 </a>
               </div>
             </div>
