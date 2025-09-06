@@ -15,7 +15,7 @@
 .navbar-logo img {
   height: 95px !important;
   width: auto;
-  margin-left: 90px !important;
+  padding-left: 90px !important;
   max-width: 100%;
 }
 
@@ -23,7 +23,7 @@
 .navbar-ctas {
   display: flex;
   gap: 10px;
-  margin-right: 90px !important;
+  margin-right: 95px !important;
   flex-wrap: wrap;
 }
 
