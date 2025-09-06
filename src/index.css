@@ -104,6 +104,7 @@ section {
   position: relative;
   border-radius: 12px;
   margin-bottom: 30px;
+  box-sizing: border-box;
 }
 
 .hero-carousel img {
@@ -118,21 +119,72 @@ section {
   transform: scale(1.05);
 }
 
+/* Overlay text */
 .hero-carousel .overlay {
   position: absolute;
   bottom: 20px;
   left: 20px;
   color: #fff;
   text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  max-width: 90%; /* prevents overflow */
 }
 
 .hero-carousel .overlay h1 {
   font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 
 .hero-carousel .overlay p {
   font-size: 1rem;
+  line-height: 1.4;
 }
+
+/* ---------- Responsive ---------- */
+@media screen and (max-width: 1200px) {
+  .hero-carousel {
+    max-height: 400px;
+  }
+  .hero-carousel .overlay h1 {
+    font-size: 1.8rem;
+  }
+  .hero-carousel .overlay p {
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero-carousel {
+    max-height: 320px;
+  }
+  .hero-carousel .overlay {
+    bottom: 15px;
+    left: 15px;
+  }
+  .hero-carousel .overlay h1 {
+    font-size: 1.5rem;
+  }
+  .hero-carousel .overlay p {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-carousel {
+    max-height: 250px;
+  }
+  .hero-carousel .overlay {
+    bottom: 10px;
+    left: 10px;
+  }
+  .hero-carousel .overlay h1 {
+    font-size: 1.2rem;
+  }
+  .hero-carousel .overlay p {
+    font-size: 0.8rem;
+  }
+}
+
 
 /* ===== Article ===== */
 .article {
