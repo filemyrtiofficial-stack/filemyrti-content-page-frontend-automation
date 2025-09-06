@@ -51,7 +51,7 @@ section {
 }
 
 /* ===== Navbar ===== */
-.navbar {
+/* .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -88,16 +88,16 @@ section {
   color: #fff;
   border: none;
   padding: 8px 16px;
-  /* border-radius: 6px; */
+  /* border-radius: 6px; 
   font-size: 14px;
 }
 
 .navbar-right button:hover {
   background: #1e3a8a;
-}
+} */
 
 /* ===== Hero Carousel ===== */
-.hero-carousel {
+/* .hero-carousel {
   width: 100%;
   max-height: 500px;
   overflow: hidden;
@@ -118,15 +118,15 @@ section {
 .hero-carousel:hover img {
   transform: scale(1.05);
 }
-
+ */
 /* Overlay text */
-.hero-carousel .overlay {
+/* .hero-carousel .overlay {
   position: absolute;
   bottom: 20px;
   left: 20px;
   color: #fff;
   text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-  max-width: 90%; /* prevents overflow */
+  max-width: 90%; /* prevents overflow 
 }
 
 .hero-carousel .overlay h1 {
@@ -138,7 +138,7 @@ section {
 .hero-carousel .overlay p {
   font-size: 1rem;
   line-height: 1.4;
-}
+} */
 
 /* ---------- Responsive ---------- */
 @media screen and (max-width: 1200px) {
@@ -312,7 +312,7 @@ section {
   /* grid-template-columns: repeat(3, 1fr) ; */
   gap: 20px;
   max-width: 1330px;
-  margin: 30px 86px;
+  margin: 30px 0px 30px 90px;
   padding: 0 20px;
 }
 

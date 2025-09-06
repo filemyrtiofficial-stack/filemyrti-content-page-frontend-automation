@@ -2,7 +2,7 @@
 import "./Style/ad.css";
 // import adImage from "../assets/Hero/1.avif"; // adjust path if 
 // needed
-import adImage from "../assets/Hero/1.avif"; // new ad image
+import adImage from "../assets/Hero/1.jpg"; // new ad image
 
 export default function AdBanner() {
   return (

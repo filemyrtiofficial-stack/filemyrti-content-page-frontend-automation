@@ -15,8 +15,8 @@ export default function Navbar() {
           {/* File My RTI Banner */}
           <div className="rti-banner">
             <div className="rti-content">
-              <h3>Take Action – File Your RTI</h3>
-              <div className="rti-actions">
+              <h3>Take Action – File Your RTI <a href="https://filemyrti.com/apply/personal-rti/custom-request">Apply Now</a></h3>
+              {/* <div className="rti-actions">
                 <a
                   href="https://filemyrti.com/apply/personal-rti/custom-request"
                   target="_blank"
@@ -25,19 +25,19 @@ export default function Navbar() {
                 >
                   Apply Now
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
 
           {/* Phone Banner */}
           <div className="rti-banner">
             <div className="rti-content">
-              <h3>Need quick RTI assistance?</h3>
-              <div className="rti-actions">
+              <h3>Need quick RTI assistance?  +91 99111 00589</h3>
+              {/* <div className="rti-actions">
                 <a href="tel:+919911100589" className="rti-button">
                   +91 99111 00589
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

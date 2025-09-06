@@ -2,9 +2,9 @@ import { useEffect, useState, useRef } from "react";
 import "./Style/HeroCarousel.css";
 
 // Import local images
-import img1 from "../assets/Hero/1.avif";
-import img2 from "../assets/Hero/2.avif";
-import img3 from "../assets/Hero/3.avif";
+import img1 from "../assets/Hero/1.jpg";
+import img2 from "../assets/Hero/2.png";
+import img3 from "../assets/Hero/3.png";
 
 const slides = [
   {
