@@ -25,6 +25,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  flex:1;
 }
 
 .article-category {
@@ -48,6 +49,7 @@
   color: #555;
   line-height: 1.6;
   font-family: Lato, sans-serif;
+  flex-grow: 1;
 }
 
 /* Center only the button */
@@ -63,6 +65,8 @@
   cursor: pointer;
   transition: background 0.3s ease;
   display: block;
+  margin-top: auto;
+  align-self: center;
 }
 
 .article-btn:hover {

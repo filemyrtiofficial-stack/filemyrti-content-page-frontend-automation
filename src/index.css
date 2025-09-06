@@ -292,7 +292,7 @@ section {
 }
 
 .article-btn {
-  background-color: #ff6b6b;
+  /* background-color: #ff6b6b; */
   color: #fff;
   border: none;
   padding: 10px 15px;
@@ -312,7 +312,7 @@ section {
   /* grid-template-columns: repeat(3, 1fr) ; */
   gap: 20px;
   max-width: 1330px;
-  margin: 30px 90px;
+  margin: 30px 86px;
   padding: 0 20px;
 }
 
