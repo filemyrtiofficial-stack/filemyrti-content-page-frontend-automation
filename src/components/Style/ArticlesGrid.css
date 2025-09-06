@@ -1,7 +1,7 @@
 .articles-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr) ;  /* Always 3 cards per row */
-  gap: 2rem;
+  gap: 2.8rem !important;
   padding: 2rem;
   margin-left: 0px;
   margin-right: 30px;
