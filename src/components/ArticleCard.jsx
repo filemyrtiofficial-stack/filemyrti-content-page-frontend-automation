@@ -2,12 +2,12 @@
 import { Link } from "react-router-dom";
 import "./Style/ArticleCard.css";
 
-export default function ArticleCard({ _id, category, title, image, description }) {
+export default function ArticleCard({ _id, title, image, description }) {
   return (
     <div className="article-card">
       <img src={image} alt={title} className="article-image" />
       <div className="article-content">
-        <p className="article-category">{category}</p>
+        {/* <p className="article-category">{category}</p> */}
         <h3 className="article-title">{title}</h3>
         <p className="article-desc">
           {description?.length > 100 
