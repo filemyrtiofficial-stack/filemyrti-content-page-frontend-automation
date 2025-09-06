@@ -23,7 +23,7 @@
 .navbar-ctas {
   display: flex;
   gap: 10px;
-  margin-right: 95px !important;
+  margin-right: 80px !important;
   flex-wrap: wrap;
 }
 
