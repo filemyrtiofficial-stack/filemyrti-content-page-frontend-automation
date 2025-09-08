@@ -29,17 +29,18 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Phone Banner */}
-          <div className="rti-banner">
-            <div className="rti-content">
-              <h3>Need quick RTI assistance?  +91 99111 00589</h3>
-              {/* <div className="rti-actions">
-                <a href="tel:+919911100589" className="rti-button">
-                  +91 99111 00589
-                </a>
-              </div> */}
-            </div>
-          </div>
+         {/* Phone Banner */}
+<div className="rti-banner">
+  <div className="rti-content">
+    <h3>
+      Need quick RTI assistance?{" "}
+      <a href="tel:+919911100589" className="rti-link">
+        +91 99111 00589
+      </a>
+    </h3>
+  </div>
+</div>
+
         </div>
       </nav>
     </>
