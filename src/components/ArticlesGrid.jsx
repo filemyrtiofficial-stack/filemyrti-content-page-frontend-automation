@@ -9,12 +9,14 @@ export default function ArticlesGrid() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const articlesPerPage = 9; // show 9 cards per page
+
   // Fetch articles from API
   useEffect(() => {
     const fetchArticles = async () => {
       try {
         const res = await axios.get(`${API_BASE_URL}/api/blogs`);
-        // Ensure we always have an array
         setArticles(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         console.error(err);
@@ -27,26 +29,47 @@ export default function ArticlesGrid() {
     fetchArticles();
   }, []);
 
+  // Pagination calculations
+  const indexOfLastArticle = currentPage * articlesPerPage;
+  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+  const currentArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
+
+  const totalPages = Math.ceil(articles.length / articlesPerPage);
+
   // Loading state
   if (loading) return <p>Loading articles...</p>;
-
-  // Error state
   if (error) return <p style={{ color: "red" }}>{error}</p>;
-
-  // No articles found state
   if (!articles.length) return <p>No articles found.</p>;
 
   return (
-    <section className="articles-grid">
-      {/* Map through articles to render ArticleCard */}
-      {articles.map((article) => (
-        <ArticleCard
-          key={article._id}
-          _id={article._id}
-          {...article}
-          aria-label={`Read more about ${article.title}`}
-        />
-      ))}
+    <section>
+      <div className="articles-grid">
+        {currentArticles.map((article) => (
+          <ArticleCard
+            key={article._id}
+            _id={article._id}
+            {...article}
+            aria-label={`Read more about ${article.title}`}
+          />
+        ))}
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="pagination">
+        {[...Array(totalPages)].map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentPage(index + 1)}
+            className={currentPage === index + 1 ? "active" : ""}
+          >
+            {index + 1}
+          </button>
+        ))}
+
+        {currentPage < totalPages && (
+          <button onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+        )}
+      </div>
     </section>
   );
 }
