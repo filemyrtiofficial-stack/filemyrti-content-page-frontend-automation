@@ -1,15 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/fevicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FileMyRTI-Blog</title>
+    <title>FileMyRTI Blog - Your Guide to RTI Applications</title>
+    <meta name="description" content="Explore blogs on the RTI process, success stories, and legal insights to empower your RTI journey." />
+    <meta name="robots" content="index, follow" /> <!-- Direct search engines to index and follow -->
+    
+    <!-- Open Graph for Social Media Optimization -->
+    <meta property="og:title" content="FileMyRTI Blog" />
+    <meta property="og:description" content="Explore blogs on RTI application process and legal insights." />
+    <meta property="og:image" content="https://yourwebsite.com/path-to-image.jpg" />
+    <meta property="og:url" content="https://filemyrti.com/blog" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FileMyRTI Blog" />
+    <meta name="twitter:description" content="Learn about the RTI filing process, success stories, and legal guidance in our blog." />
+    <meta name="twitter:image" content="https://yourwebsite.com/path-to-image.jpg" />
+
+    <!-- Schema Markup for BlogPage -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "headline": "FileMyRTI Blog",
+        "description": "Learn about the RTI process and stories from the people who filed their RTI requests.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "FileMyRTI",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://yourwebsite.com/logo.png"
+          }
+        },
+        "mainEntityOfPage": "https://filemyrti.com/blog",
+        "datePublished": "2025-09-08",
+        "dateModified": "2025-09-08"
+      }
+    </script>
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="https://filemyrti.com/blog" />
   </head>
   <body>
     <div id="root"></div>
-
-    <!-- Facebook SDK -->
+    <!-- Facebook SDK (Optional for Social Media Share) -->
     <div id="fb-root"></div>
     <script
       async
@@ -17,7 +54,6 @@
       crossorigin="anonymous"
       src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v21.0"
     ></script>
-
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

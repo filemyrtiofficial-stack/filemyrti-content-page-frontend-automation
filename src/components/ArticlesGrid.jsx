@@ -1,4 +1,3 @@
-// src/components/ArticlesGrid.jsx
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ArticleCard from "./ArticleCard";
@@ -10,6 +9,7 @@ export default function ArticlesGrid() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch articles from API
   useEffect(() => {
     const fetchArticles = async () => {
       try {
@@ -18,7 +18,7 @@ export default function ArticlesGrid() {
         setArticles(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         console.error(err);
-        setError("Failed to fetch articles");
+        setError("Failed to fetch articles. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -27,14 +27,25 @@ export default function ArticlesGrid() {
     fetchArticles();
   }, []);
 
+  // Loading state
   if (loading) return <p>Loading articles...</p>;
+
+  // Error state
   if (error) return <p style={{ color: "red" }}>{error}</p>;
+
+  // No articles found state
   if (!articles.length) return <p>No articles found.</p>;
 
   return (
     <section className="articles-grid">
-      {articles.map((a) => (
-        <ArticleCard key={a._id} _id={a._id} {...a} />
+      {/* Map through articles to render ArticleCard */}
+      {articles.map((article) => (
+        <ArticleCard
+          key={article._id}
+          _id={article._id}
+          {...article}
+          aria-label={`Read more about ${article.title}`}
+        />
       ))}
     </section>
   );
