@@ -1,0 +1,12 @@
+# robots.txt for File My RTI
+
+User-agent: *
+Allow: /
+
+# Block sensitive or private routes
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+
+# Sitemap location (update with your real domain)
+Sitemap: https://yourdomain.com/sitemap.xml
