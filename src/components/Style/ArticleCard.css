@@ -85,7 +85,7 @@
 }
 
 .article-btn:hover {
-  background: #005bb5;
+  background: #005bb5 !important; 
 }
 
 /* 📱 Responsive tweaks */

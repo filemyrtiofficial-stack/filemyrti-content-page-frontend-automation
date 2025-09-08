@@ -303,7 +303,7 @@ section {
 }
 
 .article-btn:hover {
-  background-color: #ff4c4c;
+  background-color: #1206c2 !important;
 }
 
 /* ===== ArticlesGrid ===== */
