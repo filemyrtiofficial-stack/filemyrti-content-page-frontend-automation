@@ -1,3 +1,4 @@
+// src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HeroCarousel from "./components/HeroCarousel";
@@ -28,7 +29,7 @@ export default function App() {
 
         {/* Blog Detail Page */}
         <Route
-          path="/blog/:identifier"   // ✅ supports both ID and slug
+          path="/blog/:slug"  // ✅ use slug for SEO-friendly URLs
           element={
             <>
               <div
@@ -48,7 +49,7 @@ export default function App() {
                   <Sidebar />
                 </aside>
               </div>
-              <Footer /> {/* ✅ moved outside so it stays at bottom */}
+              <Footer />
             </>
           }
         />
