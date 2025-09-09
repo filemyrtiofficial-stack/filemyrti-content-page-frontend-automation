@@ -16,39 +16,39 @@ function calculateReadTime(text) {
 }
 
 export default function BlogPage() {
-  const { identifier } = useParams(); // slug or id
+  const { identifier } = useParams(); // slug or ID
   const [article, setArticle] = useState(null);
   const [views, setViews] = useState(0);
   const [relatedPosts, setRelatedPosts] = useState([]);
 
-  // Fetch blog data
+  // Fetch article by slug or ID
   useEffect(() => {
     const fetchArticle = async () => {
       try {
         const res = await axios.get(`${API_BASE_URL}/api/blogs/${identifier}`);
         setArticle(res.data);
       } catch (err) {
-        console.error(err);
+        console.error("Error fetching article:", err);
       }
     };
     fetchArticle();
   }, [identifier]);
 
-  // Increment local views
+  // Track views in localStorage
   useEffect(() => {
     if (!article?._id) return;
-    const storageKey = `article-${article._id}-views`;
-    const storedViews = parseInt(localStorage.getItem(storageKey)) || 0;
-    const newViews = storedViews + 1;
-    localStorage.setItem(storageKey, newViews);
+    const key = `article-${article._id}-views`;
+    const stored = parseInt(localStorage.getItem(key)) || 0;
+    const newViews = stored + 1;
+    localStorage.setItem(key, newViews);
     setViews(newViews);
   }, [article]);
 
-  // Fetch related posts based on tags
+  // Fetch related posts
   useEffect(() => {
     if (!article?.tags?.length) return;
 
-    const fetchRelated = async () => {
+    const fetchRelatedPosts = async () => {
       try {
         const res = await axios.get(`${API_BASE_URL}/api/blogs`);
         const filtered = res.data.filter(
@@ -56,10 +56,10 @@ export default function BlogPage() {
         );
         setRelatedPosts(filtered);
       } catch (err) {
-        console.error(err);
+        console.error("Error fetching related posts:", err);
       }
     };
-    fetchRelated();
+    fetchRelatedPosts();
   }, [article]);
 
   if (!article) return <p>Loading...</p>;

@@ -1,13 +1,10 @@
-// src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HeroCarousel from "./components/HeroCarousel";
 import ArticlesGrid from "./components/ArticlesGrid";
 import Sidebar from "./components/Sidebar";
-import AdBanner from "./components/AdBanner";
 import Footer from "./components/Footer";
 import BlogPage from "./pages/BlogPage";
-import BlogHome from "./pages/BlogHome";
 
 export default function App() {
   return (
@@ -21,7 +18,6 @@ export default function App() {
             <>
               <HeroCarousel />
               <ArticlesGrid />
-              {/* <AdBanner /> */}
               <Footer />
             </>
           }
@@ -29,7 +25,7 @@ export default function App() {
 
         {/* Blog Detail Page */}
         <Route
-          path="/blog/:slug"  // ✅ use slug for SEO-friendly URLs
+          path="/blog/:identifier"   // ✅ supports slug or ID
           element={
             <>
               <div
@@ -43,7 +39,6 @@ export default function App() {
               >
                 <main style={{ flex: "3 1 0%" }}>
                   <BlogPage />
-                  {/* <AdBanner /> */}
                 </main>
                 <aside style={{ flex: "1 1 300px", minWidth: "250px" }}>
                   <Sidebar />

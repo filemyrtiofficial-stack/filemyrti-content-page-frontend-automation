@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ArticleCard from "./ArticleCard";
-import { API_BASE_URL } from "../../config"; // use config
+import { API_BASE_URL } from "../../config";
 import "./Style/ArticlesGrid.css";
 
 export default function ArticlesGrid() {
@@ -10,9 +10,8 @@ export default function ArticlesGrid() {
   const [error, setError] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const articlesPerPage = 9; // show 9 cards per page
+  const articlesPerPage = 9;
 
-  // Fetch articles from API
   useEffect(() => {
     const fetchArticles = async () => {
       try {
@@ -20,23 +19,19 @@ export default function ArticlesGrid() {
         setArticles(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         console.error(err);
-        setError("Failed to fetch articles. Please try again later.");
+        setError("Failed to fetch articles. Try again later.");
       } finally {
         setLoading(false);
       }
     };
-
     fetchArticles();
   }, []);
 
-  // Pagination calculations
   const indexOfLastArticle = currentPage * articlesPerPage;
   const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
   const currentArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
-
   const totalPages = Math.ceil(articles.length / articlesPerPage);
 
-  // Loading state
   if (loading) return <p>Loading articles...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
   if (!articles.length) return <p>No articles found.</p>;
@@ -47,14 +42,14 @@ export default function ArticlesGrid() {
         {currentArticles.map((article) => (
           <ArticleCard
             key={article._id}
-            _id={article._id}
-            {...article}
-            aria-label={`Read more about ${article.title}`}
+            slug={article.slug}  // ✅ slug used here
+            title={article.title}
+            image={article.image}
+            description={article.description}
           />
         ))}
       </div>
 
-      {/* Pagination Controls */}
       <div className="pagination">
         {[...Array(totalPages)].map((_, index) => (
           <button
@@ -65,7 +60,6 @@ export default function ArticlesGrid() {
             {index + 1}
           </button>
         ))}
-
         {currentPage < totalPages && (
           <button onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
         )}

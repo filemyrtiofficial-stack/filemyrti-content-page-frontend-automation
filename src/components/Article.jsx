@@ -1,11 +1,10 @@
-// src/components/Article.jsx
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Comments from "./Comments";
 import RelatedPosts from "./RelatedPosts";
 import Reactions from "./Reactions";
-import { API_BASE_URL } from "../../config"; // use production backend URL
+import { API_BASE_URL } from "../../config";
 import "./Style/article.css";
 
 function calculateReadTime(text) {
@@ -16,42 +15,40 @@ function calculateReadTime(text) {
 }
 
 export default function Article() {
-  const { slug } = useParams(); // updated from id → slug
+  const { identifier } = useParams(); // slug or ID
   const [article, setArticle] = useState(null);
   const [views, setViews] = useState(0);
   const [relatedPosts, setRelatedPosts] = useState([]);
 
-  // Fetch single article by slug
+  // Fetch single article by slug or ID
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/blogs/${slug}`);
+        const res = await axios.get(`${API_BASE_URL}/api/blogs/${identifier}`);
         setArticle(res.data);
       } catch (err) {
         console.error(err);
       }
     };
     fetchArticle();
-  }, [slug]);
+  }, [identifier]);
 
-  // Track views in localStorage
+  // Track views
   useEffect(() => {
     if (!article?._id) return;
-
-    const storageKey = `article-${article._id}-views`;
-    const storedViews = parseInt(localStorage.getItem(storageKey)) || 0;
-    const newViews = storedViews + 1;
-    localStorage.setItem(storageKey, newViews);
+    const key = `article-${article._id}-views`;
+    const stored = parseInt(localStorage.getItem(key)) || 0;
+    const newViews = stored + 1;
+    localStorage.setItem(key, newViews);
     setViews(newViews);
   }, [article]);
 
   // Fetch related posts
   useEffect(() => {
     if (!article?.tags?.length) return;
-
     const fetchRelated = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/blogs`);
+        const res = await axios.get(`${API_BASE_URL}/api/blogs`);
         const filtered = res.data.filter(
           (b) => b._id !== article._id && b.tags?.some((tag) => article.tags.includes(tag))
         );
