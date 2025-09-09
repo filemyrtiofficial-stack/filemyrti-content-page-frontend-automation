@@ -16,23 +16,23 @@ function calculateReadTime(text) {
 }
 
 export default function Article() {
-  const { id } = useParams(); // get :id or :slug from URL
+  const { slug } = useParams(); // updated from id → slug
   const [article, setArticle] = useState(null);
   const [views, setViews] = useState(0);
   const [relatedPosts, setRelatedPosts] = useState([]);
 
-  // Fetch single article
+  // Fetch single article by slug
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/blogs/${id}`);
+        const res = await axios.get(`${API_BASE_URL}/blogs/${slug}`);
         setArticle(res.data);
       } catch (err) {
         console.error(err);
       }
     };
     fetchArticle();
-  }, [id]);
+  }, [slug]);
 
   // Track views in localStorage
   useEffect(() => {
