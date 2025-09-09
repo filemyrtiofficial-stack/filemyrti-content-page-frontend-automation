@@ -18,10 +18,9 @@ export default function ArticleCard({ slug, title, image, description }) {
             ? description.substring(0, 100) + "..."
             : description}
         </p>
+        {/* Pass slug as-is, don't encode it */}
         <Link to={`/blog/${slug}`} aria-label={`Read more about ${title}`}>
-          <button className="article-btn">
-            Continue Reading
-          </button>
+          <button className="article-btn">Continue Reading</button>
         </Link>
       </div>
     </div>

@@ -1,3 +1,4 @@
+// src/components/ArticlesGrid.jsx
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ArticleCard from "./ArticleCard";
@@ -42,7 +43,7 @@ export default function ArticlesGrid() {
         {currentArticles.map((article) => (
           <ArticleCard
             key={article._id}
-            slug={article.slug}  // ✅ slug used here
+            slug={encodeURIComponent(article.slug)} // ✅ encode slug for safe URL
             title={article.title}
             image={article.image}
             description={article.description}

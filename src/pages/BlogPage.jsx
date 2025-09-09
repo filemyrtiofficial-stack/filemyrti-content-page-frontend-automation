@@ -1,11 +1,10 @@
-// src/pages/BlogPage.jsx
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Comments from "../components/Comments";
 import RelatedPosts from "../components/RelatedPosts";
 import Reactions from "../components/Reactions";
-import { API_BASE_URL } from "../../config"; // production backend URL
+import { API_BASE_URL } from "../../config"; 
 import "./article.css";
 
 function calculateReadTime(text) {
@@ -16,39 +15,41 @@ function calculateReadTime(text) {
 }
 
 export default function BlogPage() {
-  const { identifier } = useParams(); // slug or ID
+  const { identifier } = useParams();
+  const decodedIdentifier = decodeURIComponent(identifier); // ✅ decode URL param
+
   const [article, setArticle] = useState(null);
   const [views, setViews] = useState(0);
   const [relatedPosts, setRelatedPosts] = useState([]);
 
-  // Fetch article by slug or ID
+  // Fetch blog data
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/api/blogs/${identifier}`);
+        const res = await axios.get(`${API_BASE_URL}/api/blogs/${decodedIdentifier}`);
         setArticle(res.data);
       } catch (err) {
-        console.error("Error fetching article:", err);
+        console.error(err);
       }
     };
     fetchArticle();
-  }, [identifier]);
+  }, [decodedIdentifier]);
 
-  // Track views in localStorage
+  // Increment local views
   useEffect(() => {
     if (!article?._id) return;
-    const key = `article-${article._id}-views`;
-    const stored = parseInt(localStorage.getItem(key)) || 0;
-    const newViews = stored + 1;
-    localStorage.setItem(key, newViews);
+    const storageKey = `article-${article._id}-views`;
+    const storedViews = parseInt(localStorage.getItem(storageKey)) || 0;
+    const newViews = storedViews + 1;
+    localStorage.setItem(storageKey, newViews);
     setViews(newViews);
   }, [article]);
 
-  // Fetch related posts
+  // Fetch related posts based on tags
   useEffect(() => {
     if (!article?.tags?.length) return;
 
-    const fetchRelatedPosts = async () => {
+    const fetchRelated = async () => {
       try {
         const res = await axios.get(`${API_BASE_URL}/api/blogs`);
         const filtered = res.data.filter(
@@ -56,10 +57,10 @@ export default function BlogPage() {
         );
         setRelatedPosts(filtered);
       } catch (err) {
-        console.error("Error fetching related posts:", err);
+        console.error(err);
       }
     };
-    fetchRelatedPosts();
+    fetchRelated();
   }, [article]);
 
   if (!article) return <p>Loading...</p>;
