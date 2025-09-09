@@ -1,10 +1,10 @@
 /* Footer */
 .footer {
-  background: #2c3e50;
+  background: #333333;
   color: white;
-  padding: 50px 0px 0px;
+  padding: 50px 0 0;
   font-family: Arial, sans-serif;
-  padding-left: 50px; !important
+  padding-left: 50px; /* removed invalid !important */
 }
 
 .footer-content {
@@ -22,14 +22,12 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* margin-left: 80px; */
 }
 
 .footer-logo img {
   width: 120px;
   height: auto;
   margin-bottom: 15px;
-  
 }
 
 .footer-tagline {
@@ -94,31 +92,56 @@
 }
 
 .footer-section a:hover {
-  color: #1da1f2; /* subtle hover color */
+  color: #1da1f2;
 }
 
 /* Newsletter */
-.newsletter {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.footer-section.newsletter {
+  padding: 20px;
+  border-radius: 6px;
+  max-width: 350px;
+}
+
+.footer-section.newsletter h4 {
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.newsletter-form input {
+  width: 260px;
+  height: 26px;
+  padding: 12px;
+  border: none;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.newsletter-form input::placeholder {
+  color: #999;
+  font-weight: 600;
+}
+
+.error-msg {
+  color: #fff;
+  font-size: 13px;
+  margin-bottom: 10px;
 }
 
 .signup-btn {
-  background: #026cb6;
-  color: white;
-  padding: 12px 20px;
+  background: #008be8;
+  color: #fff;
   border: none;
-  border-radius: 6px;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s;
   margin-top: 10px;
 }
 
 .signup-btn:hover {
-  background: #024a8a;
+  background: #0071c5;
 }
 
 /* Social Icons */
@@ -149,7 +172,7 @@
 
 /* Footer Bottom */
 .footer-bottom {
-  border-top: 1px solid #34495e;
+  border-top: 1px solid #444;
   margin-top: 40px;
   padding: 20px 10px;
   text-align: center;
@@ -196,27 +219,24 @@
   .footer-content {
     grid-template-columns: 1fr;
     gap: 25px;
-    /* text-align: center; */
-   
   }
-  .footer-brand,
-  .newsletter {
-    /* align-items: center; */
-  }
+
   .contact-item {
-    justify-content: center;
     flex-direction: column;
-    /* align-items: center; */
+    align-items: flex-start;
   }
+
   .footer-links {
     grid-template-columns: 1fr;
   }
+
   .signup-btn {
-    width: 80%;
+    width: 100%;
     text-align: center;
   }
+
   .social-icons {
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 
@@ -224,16 +244,20 @@
   .footer {
     padding: 35px 10px 0;
   }
+
   .footer-logo img {
     width: 100px;
   }
+
   .footer-tagline {
     font-size: 13px;
   }
+
   .signup-btn {
     font-size: 13px;
     padding: 10px 16px;
   }
+
   .social-icon {
     width: 34px;
     height: 34px;

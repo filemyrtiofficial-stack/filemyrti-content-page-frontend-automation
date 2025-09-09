@@ -128,21 +128,25 @@ export default function Footer() {
 
         {/* Newsletter / CTA */}
         <div className="footer-section newsletter">
-          <h4>File your RTI Now</h4>
-          <a
-            href="https://filemyrti.com/apply/personal-rti/custom-request"
-            className="signup-btn"
-            aria-label="Apply for RTI"
-          >
-            Apply Now
-          </a>
-        </div>
+  <h4>Remain Updated</h4>
+  <form className="newsletter-form">
+    <input
+      type="email"
+      placeholder="Your Email Address"
+      required
+    />
+    <button type="submit" className="signup-btn">
+      Sign up
+    </button>
+  </form>
+</div>
+
       </div>
 
       {/* Footer Bottom */}
       <div className="footer-bottom">
         <p>
-          Your Trusted RTI Partner - © 2025 FileMyRTI A Product of Ranazonai Technologies, Built with ❤️ and Dedication.
+          Your Trusted RTI Partner - © 2025 FileMyRTI A Product of <a href="https://www.ranazonai.com/">Ranazonai Technologies</a>, Built with ❤️ and Dedication.
         </p>
         <div className="footer-bottom-links">
           <a href="https://filemyrti.com/refund-policy">Refund Policy</a>
