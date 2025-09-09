@@ -80,6 +80,7 @@ export default function BlogPage() {
         {article.image && (
           <div className="article-intro-img">
             <img src={article.image} alt={article.title} />
+            <h1 className="article-img-title">{article.title}</h1>
           </div>
         )}
         <div
