@@ -1,49 +1,39 @@
 import { useEffect, useState, useRef } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { API_BASE_URL } from "../../config";
 import "./Style/HeroCarousel.css";
 
-// Import local images
-import img1 from "../assets/Hero/1.jpg";
-import img2 from "../assets/Hero/2.png";
-import img3 from "../assets/Hero/3.png";
-
-// Slide data
-const slides = [
-  {
-    id: 1,
-    img: img1,
-    title: "Top 25 Constitution Judgments for CLAT PG 2026",
-    desc: "If you’re preparing for CLAT PG, you simply cannot afford to skip these 25 constitutional judgments. They’re the ones examiners love to test again and again...",
-    link: "#",
-  },
-  {
-    id: 2,
-    img: img2,
-    title: "Landmark Criminal Law Cases",
-    desc: "Review the most important criminal law judgments you must know for exams.",
-    link: "#",
-  },
-  {
-    id: 3,
-    img: img3,
-    title: "Important PIL & Human Rights Cases",
-    desc: "Essential PIL and Human Rights cases that shaped Indian jurisprudence.",
-    link: "#",
-  },
-];
-
 export default function HeroCarousel() {
+  const [slides, setSlides] = useState([]);
   const [current, setCurrent] = useState(0);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
+  // Fetch blogs instead of hero-slides
   useEffect(() => {
+    const fetchSlides = async () => {
+      try {
+        const res = await axios.get(`${API_BASE_URL}/api/blogs`);
+        // You can filter or take only latest 3 if needed
+        setSlides(res.data.slice(0, 5)); // take first 5 blogs as hero slides
+      } catch (err) {
+        console.error("Error fetching blogs for hero carousel:", err);
+      }
+    };
+    fetchSlides();
+  }, []);
+
+  // Auto Slide every 5s
+  useEffect(() => {
+    if (slides.length === 0) return;
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, 5000);
-    return () => clearInterval(timer); // Cleanup timer
-  }, []);
+    return () => clearInterval(timer);
+  }, [slides]);
 
-  // Touch events for mobile
+  // Touch events (mobile swipe)
   const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
   const handleTouchMove = (e) => { touchEndX.current = e.touches[0].clientX; };
   const handleTouchEnd = () => {
@@ -53,9 +43,11 @@ export default function HeroCarousel() {
     else if (distance < -threshold) setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  // Navigation for previous and next slides
+  // Navigation
   const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
   const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
+
+  if (slides.length === 0) return <p>Loading...</p>;
 
   return (
     <section
@@ -66,26 +58,26 @@ export default function HeroCarousel() {
     >
       <div className="slides" style={{ transform: `translateX(-${current * 100}%)` }}>
         {slides.map((slide) => (
-          <div className="slide" key={slide.id}>
+          <div className="slide" key={slide._id}>
             <div className="slide-img">
-              {/* Alt text for accessibility and SEO */}
-              <img src={slide.img} alt={slide.title} loading="lazy" />
+              <img src={slide.image} alt={slide.title} loading="lazy" />
             </div>
             <div className="slide-content">
-              {/* Category - Add to SEO relevance if used */}
-              {/* <span className="category">{slide.category}</span> */}
               <h2>{slide.title}</h2>
-              <p>{slide.desc}</p>
-              {/* Button with link to detailed page */}
-              <a href={slide.link} className="cta-button" title={`Read more about ${slide.title}`}>
-                Continue Reading
-              </a>
+              <p>
+                {slide.description?.length > 150
+                  ? slide.description.substring(0, 150) + "..."
+                  : slide.description}
+              </p>
+              <Link to={`/blog/${slide.slug}`} aria-label={`Read more about ${slide.title}`}>
+                <button className="cta-button">Continue Reading</button>
+              </Link>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Dots Navigation */}
+      {/* Dots */}
       <div className="dots">
         {slides.map((_, idx) => (
           <button
@@ -97,7 +89,7 @@ export default function HeroCarousel() {
         ))}
       </div>
 
-      {/* Arrow Navigation */}
+      {/* Arrows */}
       <button className="arrow left" onClick={prevSlide} aria-label="Previous slide">
         &#10094;
       </button>
