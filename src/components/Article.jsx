@@ -1,4 +1,4 @@
-// Article.jsx
+//Article.jsx
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -31,22 +31,18 @@ export default function Article() {
 
   // Fetch single article by slug or ID
   useEffect(() => {
-    let isMounted = true; // avoid state updates if unmounted
     const fetchArticle = async () => {
       try {
         const res = await axios.get(`${API_BASE_URL}/api/blogs/${identifier}`);
-        if (isMounted) setArticle(res.data);
+        setArticle(res.data);
       } catch (err) {
-        console.error("Error fetching article:", err);
+        console.error(err);
       }
     };
     fetchArticle();
-    return () => {
-      isMounted = false;
-    };
   }, [identifier]);
 
-  // Track views (localStorage only, not backend)
+  // Track views
   useEffect(() => {
     if (!article?._id) return;
     const key = `article-${article._id}-views`;
@@ -65,21 +61,15 @@ export default function Article() {
         const filtered = res.data.filter(
           (b) => b._id !== article._id && b.tags?.some((tag) => article.tags.includes(tag))
         );
-        setRelatedPosts(filtered.slice(0, 3)); // Limit to 3 to reduce LCP impact
+        setRelatedPosts(filtered);
       } catch (err) {
-        console.error("Error fetching related posts:", err);
+        console.error(err);
       }
     };
     fetchRelated();
   }, [article]);
 
-  if (!article) {
-    return (
-      <article className="article">
-        <SkeletonLoader />
-      </article>
-    );
-  }
+  if (!article) return <p>Loading...</p>;
 
   const readTime = calculateReadTime(article.content);
 
@@ -93,22 +83,15 @@ export default function Article() {
         <span>{readTime}</span>
       </p>
 
-      {/* Reserve space for LCP image */}
       <div className="article-intro two-column">
         {article.image && (
-          <div className="article-intro-img">
-            <img
-              src={article.image}
-              alt={article.title}
-              width="600"
-              height="400"
-              fetchpriority="high" // 🚀 Boost LCP image
-              decoding="async"
-              style={{
-                objectFit: "cover",
-                maxWidth: "100%",
-                borderRadius: "8px",
-              }}
+          <div className="article-intro-img" style={{ width: "100%", height: "auto" }}>
+            <img 
+              src={article.image} 
+              alt={article.title} 
+              width="600" // Set width
+              height="400" // Set height (adjust according to actual image size)
+              style={{ objectFit: 'cover' }} 
             />
           </div>
         )}
@@ -132,10 +115,7 @@ export default function Article() {
       {/* Comments section with reserved space */}
       <div className="article-comments">
         {!article._id ? (
-          <div
-            className="loading-comments"
-            style={{ height: "200px", backgroundColor: "#f0f0f0" }}
-          ></div>
+          <div className="loading-comments" style={{ height: "200px", backgroundColor: "#f0f0f0" }}></div>
         ) : (
           <Comments articleId={article._id} />
         )}
