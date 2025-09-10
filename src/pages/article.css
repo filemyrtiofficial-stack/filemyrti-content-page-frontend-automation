@@ -6,17 +6,16 @@
   font-family: 'Inter', sans-serif;
   color: #333;
   line-height: 1.6;
-  /* margin-left: 30px; */
 }
 
 /* Title */
 .article-title {
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   color: #111;
   font-family: Cabin, sans-serif;
-
+  line-height: 1.3;
 }
 
 /* Meta Information */
@@ -24,6 +23,7 @@
   font-size: 0.9rem;
   color: #666;
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 2rem;
 }
@@ -32,84 +32,99 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  padding: 0.4rem 0.8rem;
-  background-color: #f0f0f0;
+  padding: 0.35rem 0.75rem;
+  background-color: #f7f7f7;
   color: #333;
   font-size: 0.85rem;
   border-radius: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid #e1e1e1;
   cursor: default;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
-article-meta span:hover {
-  background-color: #e0e0e0;
+.article-meta span:hover {
+  background-color: #eee;
   border-color: #ccc;
 }
 
-/* Intro Section: image float left, text flows */
+/* Intro Section */
 .article-intro {
-  font-size: 1.125rem !important;
-  font-family: Lato, sans-serif;
-  line-height: 1.785;
-  text-align: left;
-  margin-bottom: 1.5rem;
-  overflow: hidden; /* contain floated elements */
-  margin-top: 0%;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: flex-start;
 }
 
+/* Image block */
 .article-intro-img {
-  float: left;
-  width: 450px;
-  margin-right: 1.5rem;
-  margin-bottom: 1rem;
+  flex: 0 0 450px;
+  max-width: 100%;
+  position: relative;
+  aspect-ratio: 3 / 2; /* ✅ reserves space to avoid CLS */
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #f0f0f0; /* ✅ placeholder before image */
 }
 
 .article-intro-img img {
   width: 100%;
+  height: 100%;
   border-radius: 8px;
   object-fit: cover;
+  display: block;
 }
 
-/* Intro text wraps around the image */
+/* Text block */
 .article-intro-text {
-  display: block;
+  flex: 1;
+  font-size: 1.125rem;
+  font-family: Lato, sans-serif;
+  line-height: 1.785;
+  text-align: left;
 }
 
 /* Full-width body paragraphs */
 .article-body,
 .article-body p {
   width: 100%;
-  clear: both !important; /* ensures content starts below floated image */
   margin-bottom: 1rem;
 }
 
 /* Reactions, RelatedPosts, Comments */
-.article-body + * {
-  margin-bottom: 2rem;
+.article-body + *,
+.related-posts,
+.article-comments {
+  margin-top: 2rem;
+}
+
+/* Skeleton loader (for CLS stability) */
+.skeleton-loader {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.skeleton-card {
+  height: 200px;
+  background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+  background-size: 200% 100%;
+  border-radius: 8px;
+  animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer {
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+  .article-intro {
+    flex-direction: column;
+  }
   .article-intro-img {
-    float: none;
+    flex: none;
     width: 100%;
-    margin-right: 0;
+    aspect-ratio: 16 / 9; /* mobile ratio */
     margin-bottom: 1rem;
   }
-}
-
-.article-intro-img {
-  position: relative; /* make container the reference */
-}
-
-.article-img-title {
-  position: absolute;
-  top: 20px;         /* adjust to match your design */
-  right: 20px;
-  left: 20px;
-  color: white;
-  font-size: 2rem;
-  font-weight: 700;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-  margin: 0;
 }
