@@ -1,18 +1,16 @@
 .articles-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr) ;  /* Always 3 cards per row */
-  gap: 2.8rem !important;
+  grid-template-columns: repeat(3, 1fr); /* 3 per row desktop */
+  gap: 2.5rem;
   padding: 2rem;
-  
 }
 
 /* 📱 Tablet */
 @media (max-width: 992px) {
   .articles-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablet */
+    grid-template-columns: repeat(2, 1fr); /* ✅ keep 2 per row */
     gap: 1.5rem;
     padding: 1.5rem;
-    grid-template-columns: 1fr;
   }
 }
 
@@ -20,11 +18,12 @@
 @media (max-width: 600px) {
   .articles-grid {
     grid-template-columns: 1fr; /* Single column on mobile */
-    gap: 1.2rem;
+    gap: 1rem;
     padding: 1rem;
   }
 }
 
+/* ---------- Pagination ---------- */
 .pagination {
   display: flex;
   justify-content: center;
@@ -51,6 +50,7 @@
   border-color: #007bff;
 }
 
+/* ---------- Skeleton Loader ---------- */
 .skeleton-loader {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -58,20 +58,14 @@
 }
 
 .skeleton-card {
-  height: 200px;
+  aspect-ratio: 4 / 3; /* ✅ keeps space reserved */
   background-color: #f0f0f0;
   border-radius: 8px;
   animation: pulse 1.5s infinite ease-in-out;
 }
 
 @keyframes pulse {
-  0% {
-    background-color: #f0f0f0;
-  }
-  50% {
-    background-color: #e0e0e0;
-  }
-  100% {
-    background-color: #f0f0f0;
-  }
+  0% { background-color: #f0f0f0; }
+  50% { background-color: #e0e0e0; }
+  100% { background-color: #f0f0f0; }
 }
