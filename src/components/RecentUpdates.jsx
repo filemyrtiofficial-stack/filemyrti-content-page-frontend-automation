@@ -4,6 +4,15 @@ import axios from "axios";
 import { API_BASE_URL } from "../../config"; // production backend URL
 import "./Style/recent-updates.css";
 
+// Skeleton Loader for the list
+const SkeletonLoader = () => (
+  <div className="skeleton-loader">
+    <div className="skeleton-item"></div>
+    <div className="skeleton-item"></div>
+    <div className="skeleton-item"></div>
+  </div>
+);
+
 export default function RecentUpdates() {
   const [items, setItems] = useState([]);
 
@@ -36,7 +45,7 @@ export default function RecentUpdates() {
     fetchRecentUpdates();
   }, []);
 
-  if (!items.length) return null;
+  if (!items.length) return <SkeletonLoader />;
 
   return (
     <section className="recent-updates">
@@ -47,8 +56,8 @@ export default function RecentUpdates() {
           <li key={p.id} className="ru-item">
             <Link to={p.href} className="ru-link">
               {p.image && (
-                <div className="ru-thumb">
-                  <img src={p.image} alt={p.title} loading="lazy" />
+                <div className="ru-thumb" style={{ width: '100px', height: '100px' }}>
+                  <img src={p.image} alt={p.title} loading="lazy" width="100" height="100" />
                 </div>
               )}
               <div className="ru-meta">
