@@ -1,17 +1,15 @@
 .recent-updates {
-  max-width: 720px;
+  max-width: 720px;      /* tweak as needed */
   margin: 0 auto;
   padding: 0 8px;
-  font-family: "Inter", sans-serif;
 }
 
 .ru-heading {
   font-size: 1.75rem;
   font-weight: 700;
-  margin: 0 0 16px 0;
+  margin: 0 0 12px 0;
 }
 
-/* ---------- List ---------- */
 .ru-list {
   list-style: none;
   margin: 0;
@@ -19,13 +17,12 @@
 }
 
 .ru-item + .ru-item {
-  margin-top: 14px;
+  margin-top: 14px;      /* space between rows */
 }
 
-/* ---------- Links ---------- */
 .ru-link {
   display: grid;
-  grid-template-columns: 96px 1fr;
+  grid-template-columns: 96px 1fr; /* thumb + text */
   gap: 14px;
   align-items: center;
   text-decoration: none;
@@ -35,18 +32,15 @@
 }
 
 .ru-link:hover {
-  background: rgba(0, 0, 0, 0.04);
-  transform: translateY(-1px);
+  background: rgba(0,0,0,0.04);
 }
 
-/* ---------- Thumbnails ---------- */
 .ru-thumb {
   width: 96px;
   height: 96px;
   border-radius: 8px;
   overflow: hidden;
   flex-shrink: 0;
-  background-color: #f3f4f6; /* fallback bg while loading */
 }
 
 .ru-thumb img {
@@ -56,7 +50,6 @@
   display: block;
 }
 
-/* ---------- Meta ---------- */
 .ru-meta {
   display: flex;
   flex-direction: column;
@@ -73,47 +66,15 @@
 
 .ru-date {
   font-size: 0.9rem;
-  color: #6b7280;
+  color: #6b7280; /* gray-500 */
 }
 
-/* ---------- Skeleton Loader ---------- */
-.skeleton {
-  opacity: 0.7;
-  pointer-events: none;
-}
-
-.skeleton-thumb {
-  width: 96px;
-  height: 96px;
-  border-radius: 8px;
-  background: #e5e7eb;
-  animation: pulse 1.5s infinite ease-in-out;
-}
-
-.skeleton-line {
-  height: 12px;
-  background: #e5e7eb;
-  border-radius: 4px;
-  margin-bottom: 6px;
-  animation: pulse 1.5s infinite ease-in-out;
-}
-
-.skeleton-line.short {
-  width: 60%;
-}
-
-@keyframes pulse {
-  0% { background-color: #f3f4f6; }
-  50% { background-color: #e5e7eb; }
-  100% { background-color: #f3f4f6; }
-}
-
-/* ---------- Responsive ---------- */
+/* Mobile: keep same look, stack stays horizontal */
 @media (max-width: 560px) {
   .recent-updates { padding: 0 4px; }
   .ru-link { grid-template-columns: 80px 1fr; gap: 12px; }
-  .ru-thumb,
-  .skeleton-thumb { width: 80px; height: 80px; }
+  .ru-thumb { width: 80px; height: 80px; }
   .ru-title { font-size: 1rem; }
   .ru-date { font-size: 0.85rem; }
 }
+
