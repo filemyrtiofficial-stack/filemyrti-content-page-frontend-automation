@@ -1,15 +1,29 @@
-import React from 'react';
-import { useEffect, useState, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { API_BASE_URL } from "../../config";
 import "./Style/HeroCarousel.css";
 
+// Skeleton Loader for carousel
+const SkeletonLoader = () => (
+  <div className="skeleton-loader">
+    <div className="skeleton-slide"></div>
+    <div className="skeleton-slide"></div>
+    <div className="skeleton-slide"></div>
+  </div>
+);
+
 // Memoized Slide Component
 const Slide = React.memo(({ slide, current }) => (
   <div className="slide" key={slide._id}>
     <div className="slide-img">
-      <img src={slide.image} alt={slide.title} loading="lazy" />
+      <img
+        src={slide.image}
+        alt={slide.title}
+        loading="lazy"
+        width="100%"  // Ensure the image stretches to fill the space
+        height="auto" // Maintain aspect ratio
+      />
     </div>
     <div className="slide-content">
       <h2>{slide.title}</h2>
@@ -75,7 +89,7 @@ export default function HeroCarousel() {
   const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
   const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
 
-  if (slides.length === 0) return <p>Loading...</p>;
+  if (slides.length === 0) return <SkeletonLoader />;
 
   return (
     <section
