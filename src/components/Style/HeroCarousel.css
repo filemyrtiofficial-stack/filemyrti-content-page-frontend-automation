@@ -132,20 +132,18 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 28px;
+  font-size: 38px;
   padding: 10px;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   border: none;
-  background: rgba(0,0,0,0.2);
+  background: transparent;
   color: #1e40af;
-  cursor: pointer;
+  cursor: pointer;  
   z-index: 2;
   transition: background 0.3s ease;
 }
 
-.arrow:hover {
-  background: rgba(0,0,0,0.4);
-}
+
 
 .arrow.left {
   left: 12px;
