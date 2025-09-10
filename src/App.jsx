@@ -1,11 +1,14 @@
-//App.jsx
+// App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from "react";
 import Navbar from "./components/Navbar";
-import HeroCarousel from "./components/HeroCarousel";
-import ArticlesGrid from "./components/ArticlesGrid";
-import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
-import BlogPage from "./pages/BlogPage";
+
+// ✅ Lazy load heavy components to reduce initial bundle size
+const HeroCarousel = lazy(() => import("./components/HeroCarousel"));
+const ArticlesGrid = lazy(() => import("./components/ArticlesGrid"));
+const Sidebar = lazy(() => import("./components/Sidebar"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
 
 export default function App() {
   return (
@@ -17,8 +20,14 @@ export default function App() {
           path="/"
           element={
             <>
-              <HeroCarousel />
-              <ArticlesGrid />
+              <Suspense fallback={<div style={{ minHeight: "400px" }}>Loading...</div>}>
+                <HeroCarousel /> {/* ✅ LCP element optimized */}
+              </Suspense>
+
+              <Suspense fallback={<div>Loading articles...</div>}>
+                <ArticlesGrid />
+              </Suspense>
+
               <Footer />
             </>
           }
@@ -26,7 +35,7 @@ export default function App() {
 
         {/* Blog Detail Page */}
         <Route
-          path="/blog/:identifier"   // ✅ supports slug or ID
+          path="/blog/:identifier"
           element={
             <>
               <div
@@ -39,10 +48,15 @@ export default function App() {
                 }}
               >
                 <main style={{ flex: "3 1 0%" }}>
-                  <BlogPage />
+                  <Suspense fallback={<div>Loading blog...</div>}>
+                    <BlogPage />
+                  </Suspense>
                 </main>
+
                 <aside style={{ flex: "1 1 300px", minWidth: "250px" }}>
-                  <Sidebar />
+                  <Suspense fallback={<div>Loading sidebar...</div>}>
+                    <Sidebar />
+                  </Suspense>
                 </aside>
               </div>
               <Footer />
