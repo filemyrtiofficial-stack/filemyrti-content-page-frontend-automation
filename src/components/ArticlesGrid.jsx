@@ -1,9 +1,19 @@
-//AeticlesGrid.jsx
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import ArticleCard from "./ArticleCard";
 import { API_BASE_URL } from "../../config";
 import "./Style/ArticlesGrid.css";
+
+// Skeleton loader for articles
+const SkeletonLoader = () => (
+  <div className="skeleton-loader">
+    <div className="skeleton-card"></div>
+    <div className="skeleton-card"></div>
+    <div className="skeleton-card"></div>
+    <div className="skeleton-card"></div>
+    <div className="skeleton-card"></div>
+  </div>
+);
 
 export default function ArticlesGrid() {
   const [articles, setArticles] = useState([]);
@@ -53,7 +63,7 @@ export default function ArticlesGrid() {
     }
   }, [currentPage, totalPages]);
 
-  if (loading) return <p>Loading articles...</p>;
+  if (loading) return <SkeletonLoader />;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
   if (!articles.length) return <p>No articles found.</p>;
 
