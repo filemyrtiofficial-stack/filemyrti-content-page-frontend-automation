@@ -16,7 +16,7 @@ export default function HeroCarousel() {
       try {
         const res = await axios.get(`${API_BASE_URL}/api/blogs`);
         // You can filter or take only latest 3 if needed
-        setSlides(res.data.slice(0, 5)); // take first 5 blogs as hero slides
+        setSlides(res.data.slice(0, 3)); // take first 5 blogs as hero slides
       } catch (err) {
         console.error("Error fetching blogs for hero carousel:", err);
       }

@@ -10,6 +10,7 @@
   z-index: 1000;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   flex-wrap: wrap; /* ✅ wrap on smaller screens */
+  /* bottom: 0; */
 }
 
 /* 🔹 Logo */
