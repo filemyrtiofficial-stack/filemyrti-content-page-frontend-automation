@@ -7,6 +7,14 @@ import Reactions from "./Reactions";
 import { API_BASE_URL } from "../../config";
 import "./Style/article.css";
 
+// Skeleton loader component for dynamic content
+const SkeletonLoader = () => (
+  <div className="skeleton-loader">
+    <div className="skeleton-card"></div>
+    <div className="skeleton-card"></div>
+  </div>
+);
+
 function calculateReadTime(text) {
   const wordsPerMinute = 200;
   const wordCount = text.replace(/<[^>]+>/g, "").trim().split(/\s+/).length;
@@ -76,8 +84,14 @@ export default function Article() {
 
       <div className="article-intro two-column">
         {article.image && (
-          <div className="article-intro-img">
-            <img src={article.image} alt={article.title} />
+          <div className="article-intro-img" style={{ width: "100%", height: "auto" }}>
+            <img 
+              src={article.image} 
+              alt={article.title} 
+              width="600" // Set width
+              height="400" // Set height (adjust according to actual image size)
+              style={{ objectFit: 'cover' }} 
+            />
           </div>
         )}
         <div
@@ -87,8 +101,24 @@ export default function Article() {
       </div>
 
       <Reactions />
-      <RelatedPosts posts={relatedPosts} currentPost={article.title} />
-      <Comments articleId={article._id} />
+
+      {/* Related posts with skeleton loader */}
+      <div className="related-posts">
+        {relatedPosts.length === 0 ? (
+          <SkeletonLoader />
+        ) : (
+          <RelatedPosts posts={relatedPosts} currentPost={article.title} />
+        )}
+      </div>
+
+      {/* Comments section with reserved space */}
+      <div className="article-comments">
+        {!article._id ? (
+          <div className="loading-comments" style={{ height: "200px", backgroundColor: "#f0f0f0" }}></div>
+        ) : (
+          <Comments articleId={article._id} />
+        )}
+      </div>
     </article>
   );
 }
