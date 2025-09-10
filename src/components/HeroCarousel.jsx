@@ -1,8 +1,29 @@
-import { useEffect, useState, useRef } from "react";
+import React from 'react';
+import { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { API_BASE_URL } from "../../config";
 import "./Style/HeroCarousel.css";
+
+// Memoized Slide Component
+const Slide = React.memo(({ slide, current }) => (
+  <div className="slide" key={slide._id}>
+    <div className="slide-img">
+      <img src={slide.image} alt={slide.title} loading="lazy" />
+    </div>
+    <div className="slide-content">
+      <h2>{slide.title}</h2>
+      <p>
+        {slide.description?.length > 150
+          ? slide.description.substring(0, 150) + "..."
+          : slide.description}
+      </p>
+      <Link to={`/blog/${slide.slug}`} aria-label={`Read more about ${slide.title}`}>
+        <button className="cta-button">Continue Reading</button>
+      </Link>
+    </div>
+  </div>
+));
 
 export default function HeroCarousel() {
   const [slides, setSlides] = useState([]);
@@ -10,13 +31,20 @@ export default function HeroCarousel() {
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
-  // Fetch blogs instead of hero-slides
+  // Fetch blogs (optimized with async/await)
   useEffect(() => {
     const fetchSlides = async () => {
+      const cachedSlides = localStorage.getItem("heroSlides");
+      if (cachedSlides) {
+        setSlides(JSON.parse(cachedSlides));
+        return;
+      }
+
       try {
         const res = await axios.get(`${API_BASE_URL}/api/blogs`);
-        // You can filter or take only latest 3 if needed
-        setSlides(res.data.slice(0, 3)); // take first 5 blogs as hero slides
+        const slidesData = res.data.slice(0, 3); // Take first 3 blogs
+        setSlides(slidesData);
+        localStorage.setItem("heroSlides", JSON.stringify(slidesData)); // Cache the data
       } catch (err) {
         console.error("Error fetching blogs for hero carousel:", err);
       }
@@ -58,22 +86,7 @@ export default function HeroCarousel() {
     >
       <div className="slides" style={{ transform: `translateX(-${current * 100}%)` }}>
         {slides.map((slide) => (
-          <div className="slide" key={slide._id}>
-            <div className="slide-img">
-              <img src={slide.image} alt={slide.title} loading="lazy" />
-            </div>
-            <div className="slide-content">
-              <h2>{slide.title}</h2>
-              <p>
-                {slide.description?.length > 150
-                  ? slide.description.substring(0, 150) + "..."
-                  : slide.description}
-              </p>
-              <Link to={`/blog/${slide.slug}`} aria-label={`Read more about ${slide.title}`}>
-                <button className="cta-button">Continue Reading</button>
-              </Link>
-            </div>
-          </div>
+          <Slide key={slide._id} slide={slide} current={current} />
         ))}
       </div>
 
