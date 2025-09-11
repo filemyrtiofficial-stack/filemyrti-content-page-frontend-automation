@@ -71,10 +71,10 @@
 
 /* 🔹 Button pinned bottom */
 .article-btn {
-  margin-top: auto;
-  padding: 0.8rem 1.6rem;
-  font-size: 1rem;
-  font-weight: 600;
+  margin-left: 70px;
+  /* padding: 0.8rem 1.6rem; */
+  /* font-size: 1rem; */
+  font-weight: 400;
   color: #fff;
   background: #0073e6;
   border: none;
