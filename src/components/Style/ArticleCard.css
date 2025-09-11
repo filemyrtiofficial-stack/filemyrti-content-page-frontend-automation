@@ -107,6 +107,7 @@
     font-size: 0.95rem;
   }
   .article-btn {
-    width: 100%;
+    width: auto;
+    margin-left: 90px;
   }
 }

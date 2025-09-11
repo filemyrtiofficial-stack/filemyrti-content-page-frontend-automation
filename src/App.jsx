@@ -4,11 +4,12 @@ import { Suspense, lazy } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-// ✅ Lazy load heavy components to reduce initial bundle size
+// ✅ Lazy load heavy components
 const HeroCarousel = lazy(() => import("./components/HeroCarousel"));
 const ArticlesGrid = lazy(() => import("./components/ArticlesGrid"));
 const Sidebar = lazy(() => import("./components/Sidebar"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
+const SearchLayout = lazy(() => import("./components/SearchLayout")); // ✅ add this
 
 export default function App() {
   return (
@@ -21,7 +22,7 @@ export default function App() {
           element={
             <>
               <Suspense fallback={<div style={{ minHeight: "400px" }}>Loading...</div>}>
-                <HeroCarousel /> {/* ✅ LCP element optimized */}
+                <HeroCarousel />
               </Suspense>
 
               <Suspense fallback={<div>Loading articles...</div>}>
@@ -61,6 +62,16 @@ export default function App() {
               </div>
               <Footer />
             </>
+          }
+        />
+
+        {/* ✅ Search Page */}
+        <Route
+          path="/search"
+          element={
+            <Suspense fallback={<div>Loading search...</div>}>
+              <SearchLayout />
+            </Suspense>
           }
         />
       </Routes>
