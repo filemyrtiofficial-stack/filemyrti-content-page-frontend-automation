@@ -161,17 +161,20 @@ export default function Footer() {
         <div className="footer-section newsletter">
           <h4>Remain Updated</h4>
           <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
-  <input type="hidden" name="formType" value="subscription" />
-  <input
-    type="email"
-    name="email"
-    placeholder="Your Email Address"
-    required
-  />
-  <button type="submit" className="signup-btn">
-    Sign up
-  </button>
-</form>          {newsletterResult && <p className="newsletter-result">{newsletterResult}</p>}
+            <input type="hidden" name="formType" value="subscription" />
+            <input type="hidden" name="subject" value="New Subscriber From FileMyRTI Blog" />
+            
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email Address"
+              required
+            />
+            <button type="submit" className="signup-btn">
+              Sign up
+            </button>
+          </form>
+          {newsletterResult && <p className="newsletter-result">{newsletterResult}</p>}
         </div>
       </div>
 
