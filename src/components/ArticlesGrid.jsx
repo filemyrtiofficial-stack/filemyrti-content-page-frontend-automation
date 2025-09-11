@@ -53,13 +53,20 @@ export default function ArticlesGrid() {
   const currentArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
   const totalPages = Math.ceil(articles.length / articlesPerPage);
 
+  // Scroll to top helper
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const handlePageChange = useCallback((page) => {
     setCurrentPage(page);
+    scrollToTop();
   }, []);
 
   const handleNextPage = useCallback(() => {
     if (currentPage < totalPages) {
       setCurrentPage((prevPage) => prevPage + 1);
+      scrollToTop();
     }
   }, [currentPage, totalPages]);
 
