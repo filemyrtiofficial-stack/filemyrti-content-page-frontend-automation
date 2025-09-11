@@ -1,48 +1,54 @@
-import logo from "../assets/logo.webp"; // adjust path if needed
+import { useState } from "react";
+import logo from "../assets/logo.webp";
 import "./Style/Navbar.css";
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <>
-      <nav className="navbar">
-        {/* Left - Logo */}
-        <div className="navbar-logo">
-          <img src={logo} alt="File My RTI Logo" />
-        </div>
+    <nav className="navbar">
+      {/* Logo (always left) */}
+      <div className="navbar-logo">
+        <img src={logo} alt="File My RTI Logo" />
+      </div>
 
-        {/* Right - CTAs */}
-        <div className="navbar-ctas">
-          {/* File My RTI Banner */}
-          <div className="rti-banner">
-            <div className="rti-content">
-              <h3>Take Action – File Your RTI <a href="https://filemyrti.com/apply/personal-rti/custom-request">Apply Now</a></h3>
-              {/* <div className="rti-actions">
-                <a
-                  href="https://filemyrti.com/apply/personal-rti/custom-request"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rti-button"
-                >
-                  Apply Now
-                </a>
-              </div> */}
-            </div>
+      {/* Menu (desktop + mobile dropdown) */}
+      <div className={`nav-links ${menuOpen ? "active" : ""}`}>
+        <a href="/">Home</a>
+
+        <div className="dropdown">
+          <button className="dropbtn">
+            Category <span className="arrows">▼</span>
+          </button>
+          <div className="dropdown-content">
+            <a href="/cat1">Category 1</a>
+            <a href="/cat2">Category 2</a>
+            <a href="/cat3">Category 3</a>
           </div>
-
-         {/* Phone Banner */}
-<div className="rti-banner">
-  <div className="rti-content">
-    <h3>
-      Need quick RTI assistance?{" "}
-      <a href="tel:+919911100589" className="rti-link">
-        +91 99111 00589
-      </a>
-    </h3>
-  </div>
-</div>
-
         </div>
-      </nav>
-    </>
+
+        {/* Show in desktop menu only */}
+        <a href="#" className="search-desktop">🔍</a>
+        <a
+          href="https://filemyrti.com/apply/personal-rti/custom-request"
+          className="apply-btn"
+        >
+          Apply Now
+        </a>
+      </div>
+
+      {/* Mobile right controls */}
+      <div className="right-controls">
+        <button className="search-btn">🔍</button>
+        <button
+          className={`hamburger ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
   );
 }

@@ -1,138 +1,186 @@
-/* 🔹 Navbar */
+/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 24px;
-  background-color: #fff;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  flex-wrap: wrap; /* ✅ wrap on smaller screens */
-  /* bottom: 0; */
 }
 
-/* 🔹 Logo */
+/* Logo */
 .navbar-logo img {
-  height: 75px;   /* ✅ fixed size */
+  height: 60px;
   width: auto;
-  max-width: 100%;
-  padding-left: 85px;
 }
 
-/* 🔹 Right side banners */
-.navbar-ctas {
+/* Links (desktop) */
+.nav-links {
   display: flex;
-  gap: 15px;
-  margin-right: 100px;
-  flex-wrap: wrap; /* ✅ allow wrapping */
-  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
 }
 
-/* 🔹 RTI Banner */
-.rti-banner {
-  flex: 0 0 390px;   /* ✅ fixed width */
-  max-width: 390px;
-  background: linear-gradient(135deg, #1e73be, #4285f4);
-  color: white;
-  padding: 20px;
-  text-align: left;
-  border-radius: 10px;
-}
-
-.rti-content h3 {
-  margin: 0 0 5px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #fff !important;
-}
-
-.rti-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.rti-button {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #fff;
-  color: #3D82EC;
-  font-weight: 600;
-  border-radius: 6px;
+.nav-links a,
+.dropbtn {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
   text-decoration: none;
-  font-size: 14px;
-  white-space: nowrap; /* ✅ prevent text breaking */
-  flex: 0 0 auto;     /* ✅ no stretching */
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-.rti-button:hover {
-  background-color: #e9f0ff;
+.nav-links a:hover,
+.dropbtn:hover {
+  color: #1e73be;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 1350px) {
-  .navbar {
-    padding: 12px 20px; /* ✅ less padding for balance */
-  }
-
-  .navbar-logo img {
-    padding-left: 87px; /* ✅ closer to content */
-  }
-
-  .navbar-ctas {
-    margin-right: 20px;
-    gap: 12px; /* ✅ less gap between banners */
-  }
-
-  .rti-banner {
-    flex: 0 0 340px;   /* ✅ narrower banners fit well */
-    max-width: 340px;
-    padding: 16px;
-  }
-
-  .rti-content h3 {
-    font-size: 16px;
-  }
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+.arrows{
+  font-size: 10px;
+    margin-left: 0px;
+    margin-top: -2.5px;
+    border: none;
+    display: inline-block;
 }
 
-@media (max-width: 992px) {
-  .navbar {
-    justify-content: center;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  min-width: 160px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px 15px;
+  color: #000;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background: #f5f5f5;
+  color: #1e73be;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Apply Now Button */
+.apply-btn {
+  background: #1e73be;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.apply-btn:hover {
+  background: #155a9c;
+}
+
+/* Search Buttons */
+.search-desktop {
+  font-size: 18px;
+}
+
+.search-btn {
+  display: none;
+  font-size: 18px;
+  background: #1e73be;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #333;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Right controls (mobile only) */
+.right-controls {
+  display: none;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
     flex-direction: column;
-    text-align: center;
-  }
-
-  .navbar-logo img {
-    padding-left: 0;
-    margin-bottom: 10px;
-  }
-
-  .navbar-ctas {
+    align-items: flex-start;
+    background: #fff;
+    position: absolute;
+    top: 70px;
+    right: 0;
     width: 100%;
-    justify-content: center;
-    margin: 0;
+    padding: 15px 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   }
 
-  .rti-banner {
-    flex: 0 0 80%;
-    max-width: 400px;
+  .nav-links.active {
+    display: flex;
   }
-}
 
-@media (max-width: 600px) {
-  .rti-banner {
+  .nav-links a,
+  .dropbtn,
+  .apply-btn {
     width: 100%;
-    max-width: 360px;
+    text-align: left;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
   }
 
-  .rti-content h3 {
-    font-size: 15px;
+  .search-desktop {
+    display: none; /* hide desktop search */
   }
 
-  .rti-button {
-    font-size: 13px;
-    padding: 6px 12px;
+  .search-btn,
+  .hamburger,
+  .right-controls {
+    display: flex; /* show search + hamburger */
   }
 }
