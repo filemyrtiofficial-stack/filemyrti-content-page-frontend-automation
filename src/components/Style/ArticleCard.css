@@ -2,7 +2,7 @@
 .article-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(478px, 1fr)); /* ✅ auto adjust, min 478px */
-  gap: 30px;
+  /* gap: 30px; */
   width: 100%;
   max-width: 1600px;
   margin: auto;
@@ -37,20 +37,22 @@
 
 /* 🔹 Content */
 .article-content {
-  padding: 1.5rem;
+  /* padding: 1.5rem; */
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
 .article-category {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   color: #0073e6;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 0.6rem;
+  font-family: Lato, sans-serif;
 }
+
 
 .article-title {
   /* font-size: 1.6rem; */
@@ -59,6 +61,7 @@
   line-height: 1em;
   font-family: Cabin, sans-serif;
   /* margin-bottom: 0.8rem; */
+  margin: 2px !important;
 }
 
 .article-desc {
