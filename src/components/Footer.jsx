@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Style/Footer.css"; // Make sure this CSS has your footer styles
 
 export default function Footer() {
+  const [newsletterResult, setNewsletterResult] = useState("");
+
+  const handleNewsletterSubmit = async (event) => {
+    event.preventDefault();
+    setNewsletterResult("Sending...");
+
+    const formData = new FormData(event.target);
+
+    // Replace this with your Web3Forms access key
+    formData.append("access_key", "f787d06a-0811-4ea8-b136-3c4cae898502");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setNewsletterResult("Thank you! You are now subscribed.");
+        event.target.reset();
+      } else {
+        setNewsletterResult(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      console.error("Newsletter submission error:", error);
+      setNewsletterResult("Something went wrong. Please try again later.");
+    }
+  };
+
   return (
     <footer className="footer">
       <div className="footer-content">
@@ -12,7 +43,7 @@ export default function Footer() {
               src="https://i.postimg.cc/VLbYNNVZ/footer-logo-1733744802.webp"
               alt="File My RTI Logo"
               loading="lazy"
-              title="File My RTI Logo" // Added title for better accessibility
+              title="File My RTI Logo"
             />
           </div>
           <p className="footer-tagline">
@@ -128,25 +159,27 @@ export default function Footer() {
 
         {/* Newsletter / CTA */}
         <div className="footer-section newsletter">
-  <h4>Remain Updated</h4>
-  <form className="newsletter-form">
-    <input
-      type="email"
-      placeholder="Your Email Address"
-      required
-    />
-    <button type="submit" className="signup-btn">
-      Sign up
-    </button>
-  </form>
-</div>
-
+          <h4>Remain Updated</h4>
+          <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
+  <input type="hidden" name="formType" value="subscription" />
+  <input
+    type="email"
+    name="email"
+    placeholder="Your Email Address"
+    required
+  />
+  <button type="submit" className="signup-btn">
+    Sign up
+  </button>
+</form>          {newsletterResult && <p className="newsletter-result">{newsletterResult}</p>}
+        </div>
       </div>
 
       {/* Footer Bottom */}
       <div className="footer-bottom">
         <p>
-          Your Trusted RTI Partner - © 2025 FileMyRTI A Product of <a href="https://www.ranazonai.com/">Ranazonai Technologies</a>, Built with ❤️ and Dedication.
+          Your Trusted RTI Partner - © 2025 FileMyRTI A Product of{" "}
+          <a href="https://www.ranazonai.com/">Ranazonai Technologies</a>, Built with ❤️ and Dedication.
         </p>
         <div className="footer-bottom-links">
           <a href="https://filemyrti.com/refund-policy">Refund Policy</a>

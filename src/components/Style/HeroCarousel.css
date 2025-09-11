@@ -16,7 +16,7 @@
   transition: transform 0.7s ease-in-out;
   height: 100%; 
   margin-left: 90px;   /* ✅ keep desktop layout */
-  /* margin-right: 90px; */
+  /* margin: 0px 90px 0px 100px; */
   box-sizing: border-box;
 }
 
@@ -48,6 +48,7 @@
   object-fit: cover;
   cursor: pointer;
   border-radius: 12px;
+  margin-left: 20px;
 }
 
 /* ---------- Slide Content ---------- */

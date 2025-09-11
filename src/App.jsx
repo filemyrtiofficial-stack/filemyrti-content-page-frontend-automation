@@ -1,7 +1,7 @@
 // App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import Navbar from "./components/Navbar";
+import Navbar from "../src/components/Navbar";
 import Footer from "./components/Footer";
 
 // ✅ Lazy load heavy components
