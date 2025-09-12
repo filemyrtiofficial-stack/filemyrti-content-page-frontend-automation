@@ -23,7 +23,7 @@ export default function ArticlesGrid() {
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 9;
 
-  // Fetching articles with caching mechanism
+  // Fetching articles with caching
   useEffect(() => {
     const fetchArticles = async () => {
       const cachedArticles = localStorage.getItem("articlesData");
@@ -36,7 +36,7 @@ export default function ArticlesGrid() {
       try {
         const res = await axios.get(`${API_BASE_URL}/api/blogs`);
         setArticles(Array.isArray(res.data) ? res.data : []);
-        localStorage.setItem("articlesData", JSON.stringify(res.data)); // Cache the data
+        localStorage.setItem("articlesData", JSON.stringify(res.data));
       } catch (err) {
         console.error(err);
         setError("Failed to fetch articles. Try again later.");
@@ -53,7 +53,7 @@ export default function ArticlesGrid() {
   const currentArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
   const totalPages = Math.ceil(articles.length / articlesPerPage);
 
-  // Scroll to top helper
+  // Scroll to top
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -70,6 +70,43 @@ export default function ArticlesGrid() {
     }
   }, [currentPage, totalPages]);
 
+  const handlePrevPage = useCallback(() => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+      scrollToTop();
+    }
+  }, [currentPage]);
+
+  // Smart Pagination Pages
+  const getPageNumbers = () => {
+    const pages = [];
+
+    if (totalPages <= 5) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      pages.push(1);
+
+      if (currentPage > 3) {
+        pages.push("...");
+      }
+
+      const start = Math.max(2, currentPage - 1);
+      const end = Math.min(totalPages - 1, currentPage + 1);
+
+      for (let i = start; i <= end; i++) {
+        pages.push(i);
+      }
+
+      if (currentPage < totalPages - 2) {
+        pages.push("...");
+      }
+
+      pages.push(totalPages);
+    }
+
+    return pages;
+  };
+
   if (loading) return <SkeletonLoader />;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
   if (!articles.length) return <p>No articles found.</p>;
@@ -80,27 +117,43 @@ export default function ArticlesGrid() {
         {currentArticles.map((article) => (
           <ArticleCard
             key={article._id}
-            slug={encodeURIComponent(article.slug)} // ✅ encode slug for safe URL
+            slug={encodeURIComponent(article.slug)}
             title={article.title}
             image={article.image}
             description={article.description}
-            loading="lazy" // Lazy load the images
+            loading="lazy"
           />
         ))}
       </div>
 
+      {/* ✅ Pagination */}
       <div className="pagination">
-        {[...Array(totalPages)].map((_, index) => (
-          <button
-            key={index}
-            onClick={() => handlePageChange(index + 1)}
-            className={currentPage === index + 1 ? "active" : ""}
-          >
-            {index + 1}
+        {currentPage > 1 && (
+          <button onClick={handlePrevPage} className="page-btn">
+            &lt;
           </button>
-        ))}
+        )}
+
+        {getPageNumbers().map((page, index) =>
+          page === "..." ? (
+            <span key={index} className="dotss">
+              ...
+            </span>
+          ) : (
+            <button
+              key={index}
+              onClick={() => handlePageChange(page)}
+              className={`page-btn ${currentPage === page ? "active" : ""}`}
+            >
+              {String(page).padStart(2, "0")}.
+            </button>
+          )
+        )}
+
         {currentPage < totalPages && (
-          <button onClick={handleNextPage}>Next</button>
+          <button onClick={handleNextPage} className="page-btn">
+            &gt;
+          </button>
         )}
       </div>
     </section>

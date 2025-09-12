@@ -30,27 +30,37 @@
   justify-content: center;
   margin-top: 20px;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .pagination button {
-  padding: 6px 12px;
-  border: 1px solid #ddd;
-  background: white;
+  padding: 4px 8px;
+  border: none;
+  background: none;
   cursor: pointer;
-  border-radius: 5px;
+  font-size: 15px;
+  min-width: 32px;
+  color: #444;
   transition: 0.2s;
 }
 
 .pagination button:hover {
-  background: #f0f0f0;
+  color: #007bff;
 }
 
 .pagination button.active {
-  background: #007bff;
-  color: white;
-  border-color: #007bff;
+  color: #007bff;
+  font-weight: bold;
 }
 
+.pagination .dots {
+  padding: 4px 6px;
+  color: #666;
+  font-size: 15px;
+  user-select: none;
+  min-width: 28px;
+  text-align: center;
+}
 .skeleton-loader {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -64,6 +74,9 @@
   animation: pulse 1.5s infinite ease-in-out;
 }
 
+.dotss{
+
+}
 @keyframes pulse {
   0% {
     background-color: #f0f0f0;
