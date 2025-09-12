@@ -140,22 +140,22 @@ export default function Footer() {
         </div>
 
         {/* Quick Links */}
-        <div className="footer-section">
-          <h4>Quick Links</h4>
-          <div className="footer-links">
-            <div className="link-column">
-              <a href="https://filemyrti.com/services">Services</a>
-              <a href="https://filemyrti.com/about-us">Who We Are</a>
-              <a href="https://filemyrti.com/career">Careers</a>
-            </div>
-            <div className="link-column">
-              <a href="https://filemyrti.com/blogs">Blogs</a>
-              <a href="https://filemyrti.com/pricing">Pricing</a>
-              <a href="https://filemyrti.com/contact-us">Contact Us</a>
-              <a href="https://filemyrti.com/faqs">FAQs</a>
-            </div>
-          </div>
-        </div>
+<div className="footer-section">
+  <h4>Quick Links</h4>
+  <div className="footer-links">
+    <div className="link-column">
+      <a href="https://filemyrti.com/services" target="_blank" rel="noopener noreferrer">Services</a>
+      <a href="https://filemyrti.com/about-us" target="_blank" rel="noopener noreferrer">Who We Are</a>
+      <a href="https://filemyrti.com/career" target="_blank" rel="noopener noreferrer">Careers</a>
+    </div>
+    <div className="link-column">
+      <a href="https://filemyrti.com/blogs" target="_blank" rel="noopener noreferrer">Blogs</a>
+      <a href="https://filemyrti.com/pricing" target="_blank" rel="noopener noreferrer">Pricing</a>
+      <a href="https://filemyrti.com/contact-us" target="_blank" rel="noopener noreferrer">Contact Us</a>
+      <a href="https://filemyrti.com/faqs" target="_blank" rel="noopener noreferrer">FAQs</a>
+    </div>
+  </div>
+</div>
 
         {/* Newsletter / CTA */}
         <div className="footer-section newsletter">
