@@ -1,4 +1,3 @@
-//Article.jsx
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -28,6 +27,11 @@ export default function Article() {
   const [article, setArticle] = useState(null);
   const [views, setViews] = useState(0);
   const [relatedPosts, setRelatedPosts] = useState([]);
+
+  // ✅ Scroll to top when identifier changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [identifier]);
 
   // Fetch single article by slug or ID
   useEffect(() => {
@@ -89,8 +93,8 @@ export default function Article() {
             <img 
               src={article.image} 
               alt={article.title} 
-              width="600" // Set width
-              height="400" // Set height (adjust according to actual image size)
+              width="600"
+              height="400"
               style={{ objectFit: 'cover' }} 
             />
           </div>

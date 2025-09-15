@@ -59,11 +59,11 @@ export default function SearchPage() {
   };
 
   const authors = [
-    { name: "Raj", posts: 45 },
-    { name: "Danish", posts: 22 },
-    { name: "Abcd", posts: 12 },
-    { name: "Manish", posts: 34 },
-    { name: "Neha", posts: 18 },
+    { name: "Syed Naseer", posts: 30 },
+    { name: "Adv Prashanth Thanparthy", posts: 11 },
+    { name: "Adv Narsimha chary", posts: 17 },
+    { name: "Adv K.N.S.K Vara Prasad", posts: 19 },
+    
   ];
 
   const tags = [
