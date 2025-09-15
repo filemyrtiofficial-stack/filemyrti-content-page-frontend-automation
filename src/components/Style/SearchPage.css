@@ -1,7 +1,19 @@
+/* ✅ Allow page scroll */
+html, body {
+  height: auto;
+  min-height: 100%;
+  overflow-y: auto;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
 /* Overlay background */
 .search-overlay {
-  position: fixed;
-  inset: 0;
+  position: absolute;   /* ✅ not fixed, so it grows with page */
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
   background: rgba(0, 0, 0, 0.65);
   display: flex;
   align-items: flex-start;
