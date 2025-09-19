@@ -194,6 +194,7 @@
   .footer-content {
     grid-template-columns: 1fr;
     gap: 25px;
+    margin-left: 0px;
   }
 
   .footer-logo img {
