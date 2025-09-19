@@ -198,6 +198,7 @@
 
   .footer-logo img {
     width: 100px;
+    margin-left: -70px;
   }
 
   .signup-btn {
