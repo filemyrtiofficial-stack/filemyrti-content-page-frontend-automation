@@ -210,4 +210,8 @@
   .social-icons {
     justify-content: flex-start;
   }
+  .footer-tagline{
+    margin-top: -100px;
+    margin-left: 120px;
+  }
 }
